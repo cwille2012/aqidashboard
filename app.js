@@ -131,13 +131,13 @@ socket.on('open', function() {
 
                     labelArray.push(timeStamp);
                     pm25Array.push(parseInt(newData[i]['data']['pm25']));
-                    pm10Array.push(parseInt(newData[i]['data']['pm10']) + pm25Array[i]);
-                    mq2Array.push(parseInt(newData[i]['data']['mq2']) + pm10Array[i]);
-                    mq3Array.push(parseInt(newData[i]['data']['mq3']) + mq2Array[i]);
-                    mq4Array.push(parseInt(newData[i]['data']['mq4']) + mq3Array[i]);
-                    mq5Array.push(parseInt(newData[i]['data']['mq5']) + mq4Array[i]);
-                    mq6Array.push(parseInt(newData[i]['data']['mq6']) + mq5Array[i]);
-                    mq7Array.push(parseInt(newData[i]['data']['mq7']) + mq6Array[i]);
+                    pm10Array.push(parseInt(newData[i]['data']['pm10']) + parseInt(pm25Array[i]));
+                    mq2Array.push(parseInt(newData[i]['data']['mq2']) + parseInt(pm10Array[i]));
+                    mq3Array.push(parseInt(newData[i]['data']['mq3']) + parseInt(mq2Array[i]));
+                    mq4Array.push(parseInt(newData[i]['data']['mq4']) + parseInt(mq3Array[i]));
+                    mq5Array.push(parseInt(newData[i]['data']['mq5']) + parseInt(mq4Array[i]));
+                    mq6Array.push(parseInt(newData[i]['data']['mq6']) + parseInt(mq5Array[i]));
+                    mq7Array.push(parseInt(newData[i]['data']['mq7']) + parseInt(mq6Array[i]));
 
                     if (labelArray.length > 7) {
                         labelArray.shift();
