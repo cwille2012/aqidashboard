@@ -46,7 +46,7 @@ socket.on('open', function() {
                     var td0 = document.createElement("td");
                     var text0 = document.createTextNode(timeStamp);
                     td0.setAttribute("id", i + '-time');
-                    td0.appendChild(text);
+                    td0.appendChild(text0);
                     tr.appendChild(td0);
 
                     var td1 = document.createElement("td");
