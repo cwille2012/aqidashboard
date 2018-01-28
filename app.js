@@ -37,8 +37,8 @@ socket.on('open', function() {
                     timeStamp = timeStamp.replace(/Fri/g, '');
 
 
-                    var pm25 = newData[i]['data']['pm25'];
-                    var pm10 = parseInt(newData[i]['data']['pm10']) * parseInt(2.8);
+                    var pm25 = parseFloat(newData[i]['data']['pm25']) * 12.05;
+                    var pm10 = parseFloat(newData[i]['data']['pm10']) * 3.11;
                     var mq2 = newData[i]['data']['mq2'];
                     var mq3 = newData[i]['data']['mq3'];
                     var mq4 = newData[i]['data']['mq4'];
