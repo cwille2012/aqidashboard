@@ -442,7 +442,7 @@ socket.on('open', function() {
                             data.push(datasets[key]);
                         }
                     });
-                    var plot = $.plot("#pm25-graph", data, {
+                    var plot = $.plot("#sensor-values-time-graph", data, {
                         grid: {
                             hoverable: true,
                             clickable: true
