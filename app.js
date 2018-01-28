@@ -137,7 +137,13 @@ socket.on('open', function() {
 
                     labelArray.push(timeStampShort);
                     pm25Array.push(Math.round(parseFloat(newData[i]['data']['pm25']) * 11.50 * 100) / 100);
-                    pm10Array.push(Math.round(parseFloat(newData[i]['data']['pm10']) * 2.41 * 100) / 100);
+
+                    var pm10Val = Math.round(parseFloat(newData[i]['data']['pm10']) * 2.41 * 100) / 100;
+                    if (pm10Val > 21) {
+                        pm10Val = pm10Val - 10.00;
+                    }
+
+                    pm10Array.push(pm10Val);
                     gasArray.push(Math.round(((mq2 + mq3 + mq4 + mq5) / 4) * 100) / 100);
 
                     if (labelArray.length > 7) {
