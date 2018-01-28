@@ -95,7 +95,7 @@ socket.on('open', function() {
                     tr.appendChild(td2);
 
                     var td4 = document.createElement("td");
-                    var text4 = document.createTextNode(String(aqi) + 'C');
+                    var text4 = document.createTextNode(String(aqi));
                     td4.setAttribute("id", i + '-aqi');
                     td4.appendChild(text4);
                     tr.appendChild(td4);
@@ -118,6 +118,7 @@ socket.on('open', function() {
                 var pm25Array = new Array();
                 var pm10Array = new Array();
                 var gasArray = new Array();
+                var aqiArray = new Array();
 
                 for (var i in newData) {
                     var timeStampShort = parseInt(newData[i]['_id'].toString().substr(0, 8), 16) * 1000;
@@ -146,8 +147,18 @@ socket.on('open', function() {
 
                     var pm10Val = Math.round(parseFloat(newData[i]['data']['pm10']) * 2.41 * 100) / 100;
                     if (pm10Val > 21) {
-                        pm10Val = pm10Val - 10.00;
+                        pm10Val = Math.round((pm10Val - 10.00) * 100) / 100;
                     }
+
+                    var aqi = pm10Val;
+                    if ((Math.round(parseFloat(newData[i]['data']['pm25']) * 11.50 * 100) / 100) > aqi) {
+                        aqi = (Math.round(parseFloat(newData[i]['data']['pm25']) * 11.50 * 100) / 100);
+                    }
+                    if ((Math.round(((mq2 + mq3 + mq4 + mq5) / 4) * 100) / 100) > aqi) {
+                        aqi = (Math.round(((mq2 + mq3 + mq4 + mq5) / 4) * 100) / 100);
+                    }
+
+                    aqiArray.push(aqi);
 
                     pm10Array.push(pm10Val);
                     gasArray.push(Math.round(((mq2 + mq3 + mq4 + mq5) / 4) * 100) / 100);
@@ -164,12 +175,16 @@ socket.on('open', function() {
                     if (gasArray.length > 7) {
                         gasArray.shift();
                     }
+                    if (aqiArray.length > 7) {
+                        aqiArray.shift();
+                    }
 
                 }
                 console.log(labelArray);
                 console.log(pm25Array);
                 console.log(pm10Array);
                 console.log(gasArray);
+                console.log(aqiArray);
 
 
                 var ctx = document.getElementById("myAreaChart");
@@ -249,6 +264,50 @@ socket.on('open', function() {
                         }
                     }
                 });
+                var indexAreaChartExists = !!document.getElementById('myBarChart');
+                if (indexBarChartExists) {
+
+                    var ctx = document.getElementById("myBarChart");
+                    var myLineChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: labelArray,
+                            datasets: [{
+                                label: "Overall AQI",
+                                backgroundColor: "#28a745",
+                                borderColor: "#28a745",
+                                data: aqiArray,
+                            }],
+                        },
+                        options: {
+                            scales: {
+                                xAxes: [{
+                                    time: {
+                                        unit: 'date'
+                                    },
+                                    gridLines: {
+                                        display: false
+                                    },
+                                    ticks: {
+                                        maxTicksLimit: 6
+                                    }
+                                }],
+                                yAxes: [{
+                                    ticks: {
+                                        min: 0,
+                                        maxTicksLimit: 5
+                                    },
+                                    gridLines: {
+                                        display: true
+                                    }
+                                }],
+                            },
+                            legend: {
+                                display: false
+                            }
+                        }
+                    });
+                }
             }
 
         } else {
