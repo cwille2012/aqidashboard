@@ -531,7 +531,7 @@ socket.on('open', function() {
                                 var x = item.datapoint[0],
                                     y = item.datapoint[1].toFixed(2);
 
-                                $("#tooltip").html(item.series.label + " on " + (new Date(x).getMonth() + 1) + "/" + (new Date(x)).getDate() + "/" + (new Date(x)).getUTCFullYear() + " was $" + y)
+                                $("#tooltip").html(item.series.label + " on " + (new Date(x).getMonth() + 1) + "/" + (new Date(x)).getDate() + "/" + (new Date(x)).getUTCFullYear() + " was " + y)
                                     .css({ top: item.pageY + 5, left: item.pageX + 5 })
                                     .fadeIn(200);
                             } else {
