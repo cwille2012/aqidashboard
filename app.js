@@ -168,6 +168,16 @@ socket.on('open', function() {
                     }
 
                 }
+                console.log(labelArray);
+                console.log(pm25Array);
+                console.log(pm10Array);
+                console.log(mq2Array);
+                console.log(mq3Array);
+                console.log(mq4Array);
+                console.log(mq5Array);
+                console.log(mq6Array);
+                console.log(mq7Array);
+
                 var ctx = document.getElementById("myAreaChart");
                 var myLineChart = new Chart(ctx, {
                     type: 'line',
