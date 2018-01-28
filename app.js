@@ -20,7 +20,8 @@ socket.on('open', function() {
             var indexDataTableExists = !!document.getElementById('indexDataTable');
             if (indexDataTableExists) {
                 for (var i in newData) {
-                    var timeStamp = parseInt(newData['_id'].toString().substr(0, 8), 16) * 1000;
+                    //var timeStamp = parseInt(newData['_id'].toString().substr(0, 8), 16) * 1000;
+                    var timestamp = new Date().getTime();
                     timeStamp = new Date(timestamp);
 
                     var pm25 = newData.data.pm25.parseInt();
