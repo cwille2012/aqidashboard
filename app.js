@@ -130,14 +130,14 @@ socket.on('open', function() {
                     timeStamp = timeStamp.replace(/Jan 29 2018 /g, '');
 
                     labelArray.push(timeStamp);
-                    pm25Array.push(newData[i]['data']['pm25']);
-                    pm10Array.push(newData[i]['data']['pm10']);
-                    mq2Array.push(newData[i]['data']['mq2']);
-                    mq3Array.push(newData[i]['data']['mq3']);
-                    mq4Array.push(newData[i]['data']['mq4']);
-                    mq5Array.push(newData[i]['data']['mq5']);
-                    mq6Array.push(newData[i]['data']['mq6']);
-                    mq7Array.push(newData[i]['data']['mq7']);
+                    pm25Array.push(parseInt(newData[i]['data']['pm25']));
+                    pm10Array.push(parseInt(newData[i]['data']['pm10']));
+                    mq2Array.push(parseInt(newData[i]['data']['mq2']));
+                    mq3Array.push(parseInt(newData[i]['data']['mq3']));
+                    mq4Array.push(parseInt(newData[i]['data']['mq4']));
+                    mq5Array.push(parseInt(newData[i]['data']['mq5']));
+                    mq6Array.push(parseInt(newData[i]['data']['mq6']));
+                    mq7Array.push(parseInt(newData[i]['data']['mq7']));
 
                     if (labelArray.length > 7) {
                         labelArray.shift();
