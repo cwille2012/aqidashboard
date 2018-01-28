@@ -40,8 +40,8 @@ socket.on('open', function() {
                     timeStamp = timeStamp.replace(/Fri/g, '');
 
 
-                    var pm25 = Math.round(parseFloat(newData[i]['data']['pm25']) * 11.80 * 100) / 100;
-                    var pm10 = Math.round(parseFloat(newData[i]['data']['pm10']) * 2.91 * 100) / 100;
+                    var pm25 = Math.round(parseFloat(newData[i]['data']['pm25']) * 11.50 * 100) / 100;
+                    var pm10 = Math.round(parseFloat(newData[i]['data']['pm10']) * 2.41 * 100) / 100;
                     var mq2 = newData[i]['data']['mq2'];
                     var mq3 = newData[i]['data']['mq3'];
                     var mq4 = newData[i]['data']['mq4'];
@@ -84,12 +84,6 @@ socket.on('open', function() {
                     td2.appendChild(text2);
                     tr.appendChild(td2);
 
-                    // var td3 = document.createElement("td");
-                    // var text3 = document.createTextNode(String(gasses));
-                    // td3.setAttribute("id", i + '-gasses');
-                    // td3.appendChild(text3);
-                    // tr.appendChild(td3);
-
                     var td4 = document.createElement("td");
                     var text4 = document.createTextNode(String(temp) + 'C');
                     td4.setAttribute("id", i + '-temp');
@@ -117,38 +111,34 @@ socket.on('open', function() {
                 var labelArray = new Array();
                 var pm25Array = new Array();
                 var pm10Array = new Array();
-                var mq2Array = new Array();
-                var mq3Array = new Array();
-                var mq4Array = new Array();
-                var mq5Array = new Array();
-                var mq6Array = new Array();
-                var mq7Array = new Array();
-                for (var i in newData) {
-                    var timeStamp = parseInt(newData[i]['_id'].toString().substr(0, 8), 16) * 1000;
-                    timeStamp = new Date(timeStamp);
-                    timeStamp = String(timeStamp);
-                    timeStamp = timeStamp.replace(/GMT-0500/g, '');
-                    timeStamp = timeStamp.replace(/EST/g, '');
-                    timeStamp = timeStamp.replace(/"/g, "").replace(/'/g, "").replace(/\(|\)/g, "");
-                    timeStamp = timeStamp.replace(/Sat/g, '');
-                    timeStamp = timeStamp.replace(/Sun/g, '');
-                    timeStamp = timeStamp.replace(/Mon/g, '');
-                    timeStamp = timeStamp.replace(/Tue/g, '');
-                    timeStamp = timeStamp.replace(/Wed/g, '');
-                    timeStamp = timeStamp.replace(/Thu/g, '');
-                    timeStamp = timeStamp.replace(/Fri/g, '');
-                    timeStamp = timeStamp.replace(/Jan 28 2018 /g, '');
-                    timeStamp = timeStamp.replace(/Jan 29 2018 /g, '');
+                var gasArray = new Array();
 
-                    labelArray.push(timeStamp);
-                    pm25Array.push(parseInt(newData[i]['data']['pm25']));
-                    pm10Array.push(parseInt(newData[i]['data']['pm10']));
-                    mq2Array.push(parseInt(newData[i]['data']['mq2'])); //ozone
-                    mq3Array.push(parseInt(newData[i]['data']['mq3']));
-                    mq4Array.push(parseInt(newData[i]['data']['mq4']));
-                    mq5Array.push(parseInt(newData[i]['data']['mq5']));
-                    mq6Array.push(parseInt(newData[i]['data']['mq6']));
-                    mq7Array.push(parseInt(newData[i]['data']['mq7']));
+                for (var i in newData) {
+                    var timeStampShort = parseInt(newData[i]['_id'].toString().substr(0, 8), 16) * 1000;
+                    timeStampShort = new Date(timeStampShort);
+                    timeStampShort = String(timeStampShort);
+                    timeStampShort = timeStampShort.replace(/GMT-0500/g, '');
+                    timeStampShort = timeStampShort.replace(/EST/g, '');
+                    timeStampShort = timeStampShort.replace(/"/g, "").replace(/'/g, "").replace(/\(|\)/g, "");
+                    timeStampShort = timeStampShort.replace(/Sat/g, '');
+                    timeStampShort = timeStampShort.replace(/Sun/g, '');
+                    timeStampShort = timeStampShort.replace(/Mon/g, '');
+                    timeStampShort = timeStampShort.replace(/Tue/g, '');
+                    timeStampShort = timeStampShort.replace(/Wed/g, '');
+                    timeStampShort = timeStampShort.replace(/Thu/g, '');
+                    timeStampShort = timeStampShort.replace(/Fri/g, '');
+                    timeStampShort = timeStampShort.replace(/Jan 28 2018 /g, '');
+                    timeStampShort = timeStampShort.replace(/Jan 29 2018 /g, '');
+
+                    var mq2 = newData[i]['data']['mq2'];
+                    var mq3 = newData[i]['data']['mq3'];
+                    var mq4 = newData[i]['data']['mq4'];
+                    var mq5 = newData[i]['data']['mq5'];
+
+                    labelArray.push(timeStampShort);
+                    pm25Array.push(Math.round(parseFloat(newData[i]['data']['pm25']) * 11.50 * 100) / 100);
+                    pm10Array.push(Math.round(parseFloat(newData[i]['data']['pm10']) * 2.41 * 100) / 100);
+                    gasArray.push(Math.round(((mq2 + mq3 + mq4 + mq5) / 4) * 100) / 100);
 
                     if (labelArray.length > 7) {
                         labelArray.shift();
@@ -159,35 +149,16 @@ socket.on('open', function() {
                     if (pm10Array.length > 7) {
                         pm10Array.shift();
                     }
-                    if (mq2Array.length > 7) {
+                    if (gasArray.length > 7) {
                         mq2Array.shift();
-                    }
-                    if (mq3Array.length > 7) {
-                        mq3Array.shift();
-                    }
-                    if (mq4Array.length > 7) {
-                        mq4Array.shift();
-                    }
-                    if (mq5Array.length > 7) {
-                        mq5Array.shift();
-                    }
-                    if (mq6Array.length > 7) {
-                        mq6Array.shift();
-                    }
-                    if (mq7Array.length > 7) {
-                        mq7Array.shift();
                     }
 
                 }
                 console.log(labelArray);
                 console.log(pm25Array);
                 console.log(pm10Array);
-                console.log(mq2Array);
-                console.log(mq3Array);
-                console.log(mq4Array);
-                console.log(mq5Array);
-                console.log(mq6Array);
-                console.log(mq7Array);
+                console.log(gasArray);
+
 
                 var ctx = document.getElementById("myAreaChart");
                 var myLineChart = new Chart(ctx, {
@@ -223,7 +194,7 @@ socket.on('open', function() {
                                 data: pm10Array,
                             },
                             {
-                                label: "MQ2",
+                                label: "Ozone",
                                 lineTension: 0.3,
                                 backgroundColor: "rgba(2,117,216,0.2)",
                                 borderColor: "rgba(2,117,216,1)",
@@ -234,77 +205,7 @@ socket.on('open', function() {
                                 pointHoverBackgroundColor: "rgba(2,117,216,1)",
                                 pointHitRadius: 20,
                                 pointBorderWidth: 2,
-                                data: mq2Array,
-                            },
-                            {
-                                label: "MQ3",
-                                lineTension: 0.3,
-                                backgroundColor: "rgba(2,117,216,0.2)",
-                                borderColor: "rgba(2,117,216,1)",
-                                pointRadius: 5,
-                                pointBackgroundColor: "rgba(2,117,216,1)",
-                                pointBorderColor: "rgba(255,255,255,0.8)",
-                                pointHoverRadius: 5,
-                                pointHoverBackgroundColor: "rgba(2,117,216,1)",
-                                pointHitRadius: 20,
-                                pointBorderWidth: 2,
-                                data: mq3Array,
-                            },
-                            {
-                                label: "MQ4",
-                                lineTension: 0.3,
-                                backgroundColor: "rgba(2,117,216,0.2)",
-                                borderColor: "rgba(2,117,216,1)",
-                                pointRadius: 5,
-                                pointBackgroundColor: "rgba(2,117,216,1)",
-                                pointBorderColor: "rgba(255,255,255,0.8)",
-                                pointHoverRadius: 5,
-                                pointHoverBackgroundColor: "rgba(2,117,216,1)",
-                                pointHitRadius: 20,
-                                pointBorderWidth: 2,
-                                data: mq4Array,
-                            },
-                            {
-                                label: "MQ5",
-                                lineTension: 0.3,
-                                backgroundColor: "rgba(2,117,216,0.2)",
-                                borderColor: "rgba(2,117,216,1)",
-                                pointRadius: 5,
-                                pointBackgroundColor: "rgba(2,117,216,1)",
-                                pointBorderColor: "rgba(255,255,255,0.8)",
-                                pointHoverRadius: 5,
-                                pointHoverBackgroundColor: "rgba(2,117,216,1)",
-                                pointHitRadius: 20,
-                                pointBorderWidth: 2,
-                                data: mq5Array,
-                            },
-                            {
-                                label: "MQ6",
-                                lineTension: 0.3,
-                                backgroundColor: "rgba(2,117,216,0.2)",
-                                borderColor: "rgba(2,117,216,1)",
-                                pointRadius: 5,
-                                pointBackgroundColor: "rgba(2,117,216,1)",
-                                pointBorderColor: "rgba(255,255,255,0.8)",
-                                pointHoverRadius: 5,
-                                pointHoverBackgroundColor: "rgba(2,117,216,1)",
-                                pointHitRadius: 20,
-                                pointBorderWidth: 2,
-                                data: mq6Array,
-                            },
-                            {
-                                label: "MQ7",
-                                lineTension: 0.3,
-                                backgroundColor: "rgba(2,117,216,0.2)",
-                                borderColor: "rgba(2,117,216,1)",
-                                pointRadius: 5,
-                                pointBackgroundColor: "rgba(2,117,216,1)",
-                                pointBorderColor: "rgba(255,255,255,0.8)",
-                                pointHoverRadius: 5,
-                                pointHoverBackgroundColor: "rgba(2,117,216,1)",
-                                pointHitRadius: 20,
-                                pointBorderWidth: 2,
-                                data: mq7Array,
+                                data: gasArray,
                             },
                         ],
                     },
