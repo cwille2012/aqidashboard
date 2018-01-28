@@ -112,13 +112,13 @@ socket.on('open', function() {
                 console.log('Average AQI: ' + avgAqi);
 
                 if (!!document.getElementById('averagePm25')) {
-                    document.getElementById('averagePm25').innerHTML = avgPm25;
+                    document.getElementById('averagePm25').innerHTML = parseInt(avgPm25);
                 }
                 if (!!document.getElementById('averagePm10')) {
-                    document.getElementById('averagePm10').innerHTML = avgPm10;
+                    document.getElementById('averagePm10').innerHTML = parseInt(avgPm10);
                 }
                 if (!!document.getElementById('averageOzone')) {
-                    document.getElementById('averageOzone').innerHTML = avgGasses;
+                    document.getElementById('averageOzone').innerHTML = parseInt(avgGasses);
                 }
 
             }
