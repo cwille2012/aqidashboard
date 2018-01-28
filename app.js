@@ -25,18 +25,18 @@ socket.on('open', function() {
 
                     //var timeStamp = 'Todays Date';
 
-                    var pm25 = newData.i.data.pm25.parseInt();
-                    var pm10 = newData.i.data.pm10.parseInt();
-                    var mq2 = newData.i.data.mq2.parseInt();
-                    var mq3 = newData.i.data.mq3.parseInt();
-                    var mq4 = newData.i.data.mq4.parseInt();
-                    var mq5 = newData.i.data.mq5.parseInt();
-                    var mq6 = newData.i.data.mq6.parseInt();
-                    var mq7 = newData.i.data.mq7.parseInt();
-                    var temp = newData.i.data.temperature.parseInt();
-                    var hum = newData.i.data.humidity.parseInt();
-                    var long = newData.i.pos.lon;
-                    var lat = newData.i.pos.lat;
+                    var pm25 = newData[i]['data']['pm25'].parseInt();
+                    var pm10 = newData[i]['data']['pm10'].parseInt();
+                    var mq2 = newData[i]['data']['mq2'].parseInt();
+                    var mq3 = newData[i]['data']['mq3'].parseInt();
+                    var mq4 = newData[i]['data']['mq4'].parseInt();
+                    var mq5 = newData[i]['data']['mq5'].parseInt();
+                    var mq6 = newData[i]['data']['mq6'].parseInt();
+                    var mq7 = newData[i]['data']['mq7'].parseInt();
+                    var temp = newData[i]['data']['temperature'].parseInt();
+                    var hum = newData[i]['data']['humidity'].parseInt();
+                    var long = newData[i]['pos']['lon'];
+                    var lat = newData[i]['pos']['lat'];
 
                     var particulates = Math.round(((pm25 + pm10) / 2) * 100) / 100;
                     var gasses = Math.round(((mq2 + mq3 + mq4 + mq5 + mq6 + mq7) / 6) * 100) / 100;
