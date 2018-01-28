@@ -2023,7 +2023,215 @@ socket.on('open', function() {
                 plotAccordingToChoices();
             }
 
+            //graph all together
+            if (!!document.getElementById('all-graph')) {
 
+                var datasets = new Object();
+
+                var pm25Data = new Array();
+                var pm10Data = new Array();
+                var mq2Data = new Array();
+                var mq3Data = new Array();
+                var mq4Data = new Array();
+                var mq5Data = new Array();
+                var mq6Data = new Array();
+                var mq7Data = new Array();
+
+                //newData = JSON.parse(newData);
+
+                for (var i in newData) {
+
+                    var date = parseInt(newData[i]['_id'].toString().substr(0, 8), 16) * 1000;
+                    date = new Date(date);
+                    var time = new Date(date).getTime();
+
+                    var pm25 = Math.round(parseFloat(newData[i]['data']['pm25']) * 11.50 * 100) / 100;
+                    var pm10 = Math.round(parseFloat(newData[i]['data']['pm10']) * 2.41 * 100) / 100;
+                    var mq2 = newData[i]['data']['mq2'];
+                    var mq3 = newData[i]['data']['mq3'];
+                    var mq4 = newData[i]['data']['mq4'];
+                    var mq5 = newData[i]['data']['mq5'];
+                    var mq6 = newData[i]['data']['mq6'];
+                    var mq7 = newData[i]['data']['mq7'];
+                    var temp = newData[i]['data']['temperature'];
+                    var hum = newData[i]['data']['humidity'];
+
+                    pm25Data.push([time, pm25]);
+                    pm10Data.push([time, pm10]);
+                    mq2Data.push([time, mq2]);
+                    mq3Data.push([time, mq3]);
+                    mq4Data.push([time, mq4]);
+                    mq5Data.push([time, mq5]);
+                    mq6Data.push([time, mq6]);
+                    mq7Data.push([time, mq7]);
+
+                    //console.log(time + " " + pm25);
+                }
+
+                var pm25Obj = { 'data': pm25Data, 'label': "Particles (PM2.5)", color: 1 };
+                var pm10Obj = { 'data': pm10Data, 'label': "Particles (PM10)", color: 2 };
+                var mq2Obj = { 'data': mq2Data, 'label': "Propane", color: 3 };
+                var mq3Obj = { 'data': mq3Data, 'label': "Benzine", color: 4 };
+                var mq4Obj = { 'data': mq4Data, 'label': "Methane", color: 5 };
+                var mq5Obj = { 'data': mq5Data, 'label': "Hydrogen", color: 6 };
+                var mq6Obj = { 'data': mq6Data, 'label': "Butane", color: 7 };
+                var mq7Obj = { 'data': mq7Data, 'label': "Carbon Monoxide", color: 8 };
+
+                datasets.pm25 = pm25Obj;
+                datasets.pm10 = pm10Obj;
+                datasets.mq2 = mq2Obj;
+                datasets.mq3 = mq3Obj;
+                datasets.mq4 = mq4Obj;
+                datasets.mq5 = mq5Obj;
+                datasets.mq6 = mq6Obj;
+                datasets.mq7 = mq7Obj;
+
+                console.log('Datasets: ');
+                console.log(datasets);
+
+                //end of formatting
+                //graph stuff:
+
+                var i = 0;
+                $.each(datasets, function(key, val) {
+                    val.color = i;
+                    ++i;
+                });
+
+                var choiceContainer = $("#choices");
+                $.each(datasets, function(key, val) {
+                    if (key == 'all') { //dont forget to change here
+                        choiceContainer.append("<input type='checkbox' name='" + key +
+                            "' checked='checked' id='id" + key + "'></input>" +
+                            "<label for='id" + key + "' style='margin: 10px;'>" +
+                            val.label + "</label>");
+                    } else {
+                        choiceContainer.append("<input type='checkbox' name='" + key +
+                            "' checked='checked' id='id" + key + "'></input>" +
+                            "<label for='id" + key + "' style='margin: 10px;'>" +
+                            val.label + "</label>");
+                    }
+                });
+
+                choiceContainer.find("input").click(plotAccordingToChoices);
+
+                function plotAccordingToChoices() {
+
+                    var data = [];
+
+                    choiceContainer.find("input:checked").each(function() {
+                        var key = $(this).attr("name");
+                        if (key && datasets[key]) {
+                            data.push(datasets[key]);
+                        }
+                    });
+                    var plot = $.plot("#mq7-graph", data, {
+                        grid: {
+                            hoverable: true,
+                            clickable: true
+                        },
+                        series: {
+                            lines: {
+                                show: true
+                            },
+                            points: {
+                                show: true
+                            }
+                        },
+                        yaxis: {
+                            min: 0
+                        },
+                        xaxis: {
+                            mode: "time",
+                            timeformat: "%m/%d/%y",
+                            tickSize: [24, "hour"],
+                            tickFormatter: function(val, axis) {
+                                var date = (new Date((val)).getMonth() + 1) + "/" + (new Date(val)).getDate() + "/" + (new Date(val)).getUTCFullYear();
+                                return date;
+                            }
+                        }
+                    });
+
+
+                    if (data.length > 0) {
+                        var overview = $.plot("#sensor-values-time-overview", data, {
+                            series: {
+                                lines: {
+                                    show: true,
+                                    lineWidth: 1
+                                },
+                                shadowSize: 0
+                            },
+                            xaxis: {
+                                ticks: [],
+                                mode: "time"
+                            },
+                            yaxis: {
+                                ticks: [],
+                                min: 0,
+                                autoscaleMargin: 0.1
+                            },
+                            selection: {
+                                mode: "x"
+                            },
+                            legend: {
+                                show: false
+                            }
+                        });
+                    }
+
+                    $("#mq7-graph").bind("plotselected", function(event, ranges) {
+
+                        $.each(plot.getXAxes(), function(_, axis) {
+                            var opts = axis.options;
+                            opts.min = ranges.xaxis.from;
+                            opts.max = ranges.xaxis.to;
+                        });
+                        plot.setupGrid();
+                        plot.draw();
+                        plot.clearSelection();
+
+                        overview.setSelection(ranges, true);
+                    });
+
+                    $("#sensor-values-time-overview").bind("plotselected", function(event, ranges) {
+                        plot.setSelection(ranges);
+                    });
+
+                    $("<div id='tooltip'></div>").css({
+                        position: "absolute",
+                        display: "none",
+                        border: "1px solid #fdd",
+                        padding: "2px",
+                        "background-color": "#fee",
+                        opacity: 0.80
+                    }).appendTo("body");
+
+                    $("#mq7-graph").bind("plothover", function(event, pos, item) {
+
+                        if (true) {
+                            if (item) {
+                                var x = item.datapoint[0],
+                                    y = item.datapoint[1].toFixed(2);
+
+                                $("#tooltip").html(item.series.label + " on " + (new Date(x).getMonth() + 1) + "/" + (new Date(x)).getDate() + "/" + (new Date(x)).getUTCFullYear() + " was " + y)
+                                    .css({ top: item.pageY + 5, left: item.pageX + 5 })
+                                    .fadeIn(200);
+                            } else {
+                                $("#tooltip").hide();
+                            }
+                        }
+                    });
+
+                    $("#mq7-graph").bind("plotclick", function(event, pos, item) {
+                        if (item) {
+                            $("#clickdata").text(" - click point " + item.dataIndex + " in " + item.series.label);
+                            plot.highlight(item.series, item.datapoint);
+                        }
+                    });
+                }
+                plotAccordingToChoices();
+            }
 
 
 
