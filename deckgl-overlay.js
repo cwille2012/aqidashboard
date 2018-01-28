@@ -22,7 +22,7 @@ const colorRange = [
 const elevationScale = { min: 1, max: 20 };
 
 const defaultProps = {
-    radius: 250,
+    radius: 100,
     upperPercentile: 100,
     coverage: 1
 };
@@ -39,7 +39,7 @@ export default class DeckGLOverlay extends Component {
             zoom: 6.6,
             minZoom: 5,
             maxZoom: 15,
-            pitch: 40.5,
+            pitch: 0,
             bearing: 0
         };
     }
