@@ -417,7 +417,7 @@ socket.on('open', function() {
 
                 var choiceContainer = $("#choices");
                 $.each(datasets, function(key, val) {
-                    if (key == 'eth') {
+                    if (key == 'pm25') { //dont forget to change here
                         choiceContainer.append("<input type='checkbox' name='" + key +
                             "' checked='checked' id='id" + key + "'></input>" +
                             "<label for='id" + key + "' style='margin: 10px;'>" +
@@ -442,7 +442,7 @@ socket.on('open', function() {
                             data.push(datasets[key]);
                         }
                     });
-                    var plot = $.plot("#sensor-values-time-graph", data, {
+                    var plot = $.plot("#pm25-graph", data, {
                         grid: {
                             hoverable: true,
                             clickable: true
