@@ -354,7 +354,7 @@ socket.on('open', function() {
 
                 //newData = JSON.parse(newData);
 
-                for (var key in newData) {
+                for (var i in newData) {
 
                     var date = parseInt(newData[i]['_id'].toString().substr(0, 8), 16) * 1000;
                     date = new Date(date);
