@@ -2237,7 +2237,7 @@ socket.on('open', function() {
 
             //VISUALIZATION AND MAPPING HERE
 
-            //const DATA_URL = 'https://raw.githubusercontent.com/uber-common/deck.gl-data/master/examples/3d-heatmap/heatmap-data.csv';
+            const DATA_URL = 'https://raw.githubusercontent.com/uber-common/deck.gl-data/master/examples/3d-heatmap/heatmap-data.csv';
 
 
 
@@ -2253,7 +2253,7 @@ socket.on('open', function() {
                         data: null
                     };
 
-                    var response = new Array();
+                    /*var response = new Array();
                     for (var i in newData) {
 
                         var lng = newData[i]['pos']['lon'];
@@ -2269,9 +2269,14 @@ socket.on('open', function() {
                     }
 
                     console.log(response);
-
-                    const data = response.map(d => [Number(d.lng), Number(d.lat)]);
-                    this.setState({ data });
+                    */
+                    requestCsv(DATA_URL, (error, response) => {
+                        if (!error) {
+                            const data = response.map(d => [Number(d.lng), Number(d.lat)]);
+                            console.log(data);
+                            this.setState({ data });
+                        }
+                    });
 
                 }
 
