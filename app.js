@@ -24,6 +24,16 @@ socket.on('open', function() {
                 for (var i in newData) {
                     var timeStamp = parseInt(newData[i]['_id'].toString().substr(0, 8), 16) * 1000;
                     timeStamp = new Date(timeStamp);
+                    timeStamp = String(timeStamp);
+                    timeStamp = timeStamp.replace(/GMT-0500 (EST)/g, ' ');
+                    timeStamp = timeStamp.replace(/Sat/g, '');
+                    timeStamp = timeStamp.replace(/Sun/g, '');
+                    timeStamp = timeStamp.replace(/Mon/g, '');
+                    timeStamp = timeStamp.replace(/Tue/g, '');
+                    timeStamp = timeStamp.replace(/Wed/g, '');
+                    timeStamp = timeStamp.replace(/Thu/g, '');
+                    timeStamp = timeStamp.replace(/Fri/g, '');
+
 
                     var pm25 = newData[i]['data']['pm25'];
                     var pm10 = newData[i]['data']['pm10'];
