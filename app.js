@@ -51,7 +51,7 @@ socket.on('open', function() {
                     var lat = newData[i]['pos']['lat'];
 
                     var particulates = Math.round(((pm25 + pm10) / 2) * 100) / 100;
-                    var gasses = Math.round(((mq2 + mq3 + mq4 + mq5 + mq6) / 5) * 100) / 100;
+                    var gasses = Math.round(((mq2 + mq3 + mq4 + mq5) / 4) * 100) / 100;
 
                     var tr = document.createElement("tr");
 
