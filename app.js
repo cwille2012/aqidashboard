@@ -2125,7 +2125,7 @@ socket.on('open', function() {
                             data.push(datasets[key]);
                         }
                     });
-                    var plot = $.plot("#mq7-graph", data, {
+                    var plot = $.plot("#all-graph", data, {
                         grid: {
                             hoverable: true,
                             clickable: true
@@ -2180,7 +2180,7 @@ socket.on('open', function() {
                         });
                     }
 
-                    $("#mq7-graph").bind("plotselected", function(event, ranges) {
+                    $("#all-graph").bind("plotselected", function(event, ranges) {
 
                         $.each(plot.getXAxes(), function(_, axis) {
                             var opts = axis.options;
@@ -2207,7 +2207,7 @@ socket.on('open', function() {
                         opacity: 0.80
                     }).appendTo("body");
 
-                    $("#mq7-graph").bind("plothover", function(event, pos, item) {
+                    $("#all-graph").bind("plothover", function(event, pos, item) {
 
                         if (true) {
                             if (item) {
@@ -2223,7 +2223,7 @@ socket.on('open', function() {
                         }
                     });
 
-                    $("#mq7-graph").bind("plotclick", function(event, pos, item) {
+                    $("#all-graph").bind("plotclick", function(event, pos, item) {
                         if (item) {
                             $("#clickdata").text(" - click point " + item.dataIndex + " in " + item.series.label);
                             plot.highlight(item.series, item.datapoint);
