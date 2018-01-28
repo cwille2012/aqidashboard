@@ -25,7 +25,8 @@ socket.on('open', function() {
                     var timeStamp = parseInt(newData[i]['_id'].toString().substr(0, 8), 16) * 1000;
                     timeStamp = new Date(timeStamp);
                     timeStamp = String(timeStamp);
-                    timeStamp = timeStamp.replace(/GMT-0500 (EST)/g, ' ');
+                    timeStamp = timeStamp.replace(/GMT-0500/g, '');
+                    timeStamp = timeStamp.replace(/(EST)/g, '');
                     timeStamp = timeStamp.replace(/Sat/g, '');
                     timeStamp = timeStamp.replace(/Sun/g, '');
                     timeStamp = timeStamp.replace(/Mon/g, '');
