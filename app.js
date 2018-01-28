@@ -137,6 +137,34 @@ socket.on('open', function() {
                     mq6Array.push(newData[i]['data']['mq6']);
                     mq7Array.push(newData[i]['data']['mq7']);
 
+                    if (labelArray.length > 7) {
+                        labelArray.shift();
+                    }
+                    if (pm25Array.length > 7) {
+                        pm25Array.shift();
+                    }
+                    if (pm10Array.length > 7) {
+                        pm10Array.shift();
+                    }
+                    if (mq2Array.length > 7) {
+                        mq2Array.shift();
+                    }
+                    if (mq3Array.length > 7) {
+                        mq3Array.shift();
+                    }
+                    if (mq4Array.length > 7) {
+                        mq4Array.shift();
+                    }
+                    if (mq5Array.length > 7) {
+                        mq5Array.shift();
+                    }
+                    if (mq6Array.length > 7) {
+                        mq6Array.shift();
+                    }
+                    if (mq7Array.length > 7) {
+                        mq7Array.shift();
+                    }
+
                 }
                 var ctx = document.getElementById("myAreaChart");
                 var myLineChart = new Chart(ctx, {
