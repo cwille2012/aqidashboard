@@ -214,7 +214,7 @@ socket.on('open', function() {
                                 label: "PM25",
                                 lineTension: 0.3,
                                 backgroundColor: "rgba(255,193,7,0.2)",
-                                borderColor: "rgba(2,117,216,1)",
+                                borderColor: "rgba(255,193,7,1)",
                                 pointRadius: 5,
                                 pointBackgroundColor: "rgba(255,193,7,1)",
                                 pointBorderColor: "rgba(255,255,255,0.8)",
