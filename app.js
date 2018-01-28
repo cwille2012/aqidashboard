@@ -22,7 +22,7 @@ socket.on('open', function() {
                 for (var i in newData) {
                     //var timeStamp = parseInt(newData['_id'].toString().substr(0, 8), 16) * 1000;
                     var timestamp = new Date().getTime();
-                    timeStamp = new Date(timestamp);
+                    timeStamp = new Date(timeStamp);
 
                     var pm25 = newData.data.pm25.parseInt();
                     var pm10 = newData.data.pm10.parseInt();
