@@ -48,7 +48,7 @@ MongoClient.connect(url, function(err, db) {
         dbo.collection("data").find({}).toArray(function(err, result) {
             if (err) throw err;
             socket.send(JSON.stringify(result));
-            console.log(result);
+            //console.log(result);
         });
         connection = socket;
         // nrp.on('airData', function(data) {

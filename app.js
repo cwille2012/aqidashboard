@@ -182,7 +182,7 @@ socket.on('open', function() {
                 var myLineChart = new Chart(ctx, {
                     type: 'line',
                     data: {
-                        labels: [labelArray],
+                        labels: labelArray,
                         datasets: [{
                                 label: "PM25",
                                 lineTension: 0.3,
@@ -195,7 +195,7 @@ socket.on('open', function() {
                                 pointHoverBackgroundColor: "rgba(2,117,216,1)",
                                 pointHitRadius: 20,
                                 pointBorderWidth: 2,
-                                data: [pm25Array],
+                                data: pm25Array,
                             },
                             {
                                 label: "PM10",
@@ -209,7 +209,7 @@ socket.on('open', function() {
                                 pointHoverBackgroundColor: "rgba(2,117,216,1)",
                                 pointHitRadius: 20,
                                 pointBorderWidth: 2,
-                                data: [pm10Array],
+                                data: pm10Array,
                             },
                         ],
                     },
