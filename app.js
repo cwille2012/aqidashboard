@@ -352,7 +352,7 @@ socket.on('open', function() {
                 var mq6Data = new Array();
                 var mq7Data = new Array();
 
-                newData = JSON.parse(newData);
+                //newData = JSON.parse(newData);
 
                 for (var key in newData) {
 
