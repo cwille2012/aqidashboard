@@ -50,10 +50,16 @@ socket.on('open', function() {
                     tr.appendChild(td0);
 
                     var td1 = document.createElement("td");
-                    var text1 = document.createTextNode(String(lat) + ', ' + String(long));
-                    td1.setAttribute("id", i + '-location');
+                    var text1 = document.createTextNode(String(lat));
+                    td1.setAttribute("id", i + '-lat');
                     td1.appendChild(text1);
                     tr.appendChild(td1);
+
+                    var td6 = document.createElement("td");
+                    var text6 = document.createTextNode(String(long));
+                    td6.setAttribute("id", i + '-long');
+                    td6.appendChild(text6);
+                    tr.appendChild(td6);
 
                     var td2 = document.createElement("td");
                     var text2 = document.createTextNode(String(particulates));
