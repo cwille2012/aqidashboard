@@ -352,6 +352,8 @@ socket.on('open', function() {
                 var mq6Data = new Array();
                 var mq7Data = new Array();
 
+                newData = JSON.parse(newData);
+
                 for (var key in newData) {
 
                     var date = parseInt(newData[i]['_id'].toString().substr(0, 8), 16) * 1000;
