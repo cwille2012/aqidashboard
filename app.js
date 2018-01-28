@@ -106,9 +106,6 @@ socket.on('open', function() {
                 var avgPm10 = sumPm10 / i;
                 var avgPm25 = sumPm25 / i;
                 var avgAqi = sumAqi / i;
-                console.log('Average Gasses: ' + avgGasses);
-                console.log('Average PM10: ' + avgPm10);
-                console.log('Average PM25: ' + avgPm25);
                 console.log('Average AQI: ' + avgAqi);
 
                 if (!!document.getElementById('averagePm25')) {
@@ -148,7 +145,21 @@ socket.on('open', function() {
                     timeStampShort = timeStampShort.replace(/Thu/g, '');
                     timeStampShort = timeStampShort.replace(/Fri/g, '');
                     timeStampShort = timeStampShort.replace(/2018 /g, '');
-                    //timeStampShort = timeStampShort.replace(/Jan 29 2018 /g, '');
+                    timeStampShort = timeStampShort.replace(/Jan /g, '1/');
+                    timeStampShort = timeStampShort.replace(/Feb /g, '2/');
+                    timeStampShort = timeStampShort.replace(/Mar /g, '3/');
+                    timeStampShort = timeStampShort.replace(/Apr /g, '4/');
+                    timeStampShort = timeStampShort.replace(/May /g, '5/');
+                    timeStampShort = timeStampShort.replace(/Jun /g, '6/');
+                    timeStampShort = timeStampShort.replace(/Jul /g, '7/');
+                    timeStampShort = timeStampShort.replace(/Aug /g, '8/');
+                    timeStampShort = timeStampShort.replace(/Sep /g, '9/');
+                    timeStampShort = timeStampShort.replace(/Oct /g, '10/');
+                    timeStampShort = timeStampShort.replace(/Nov /g, '11/');
+                    timeStampShort = timeStampShort.replace(/Dec /g, '12/');
+                    timeStampShort = timeStampShort.split(':');
+                    timeStampShort = String(timeStampShort[0] + timeStampShort[1]);
+
 
                     var mq2 = newData[i]['data']['mq2'];
                     var mq3 = newData[i]['data']['mq3'];
@@ -156,7 +167,6 @@ socket.on('open', function() {
                     var mq5 = newData[i]['data']['mq5'];
 
                     if ((i == timeInterval) || (i == timeInterval * 7) || (i == timeInterval * 2) || (i == timeInterval * 3) || (i == timeInterval * 4) || (i == timeInterval * 5) || (i == timeInterval * 6)) {
-                        console.log(timeInterval);
                         labelArray.push(timeStampShort);
                         pm25Array.push(Math.round(parseFloat(newData[i]['data']['pm25']) * 11.50 * 100) / 100);
 
@@ -196,11 +206,6 @@ socket.on('open', function() {
                     }
 
                 }
-                console.log(labelArray);
-                console.log(pm25Array);
-                console.log(pm10Array);
-                console.log(gasArray);
-                console.log(aqiArray);
 
 
                 var ctx = document.getElementById("myAreaChart");
