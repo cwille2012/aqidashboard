@@ -150,7 +150,7 @@ socket.on('open', function() {
                         pm10Array.shift();
                     }
                     if (gasArray.length > 7) {
-                        mq2Array.shift();
+                        gasArray.shift();
                     }
 
                 }
