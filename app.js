@@ -264,7 +264,7 @@ socket.on('open', function() {
                         }
                     }
                 });
-                var indexAreaChartExists = !!document.getElementById('myBarChart');
+                var indexBarChartExists = !!document.getElementById('myBarChart');
                 if (indexBarChartExists) {
 
                     var ctx = document.getElementById("myBarChart");
