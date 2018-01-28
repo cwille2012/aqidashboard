@@ -25,16 +25,16 @@ socket.on('open', function() {
 
                     //var timeStamp = 'Todays Date';
 
-                    var pm25 = newData[i]['data']['pm25'].parseInt();
-                    var pm10 = newData[i]['data']['pm10'].parseInt();
-                    var mq2 = newData[i]['data']['mq2'].parseInt();
-                    var mq3 = newData[i]['data']['mq3'].parseInt();
-                    var mq4 = newData[i]['data']['mq4'].parseInt();
-                    var mq5 = newData[i]['data']['mq5'].parseInt();
-                    var mq6 = newData[i]['data']['mq6'].parseInt();
-                    var mq7 = newData[i]['data']['mq7'].parseInt();
-                    var temp = newData[i]['data']['temperature'].parseInt();
-                    var hum = newData[i]['data']['humidity'].parseInt();
+                    var pm25 = newData[i]['data']['pm25'];
+                    var pm10 = newData[i]['data']['pm10'];
+                    var mq2 = newData[i]['data']['mq2'];
+                    var mq3 = newData[i]['data']['mq3'];
+                    var mq4 = newData[i]['data']['mq4'];
+                    var mq5 = newData[i]['data']['mq5'];
+                    var mq6 = newData[i]['data']['mq6'];
+                    var mq7 = newData[i]['data']['mq7'];
+                    var temp = newData[i]['data']['temperature'];
+                    var hum = newData[i]['data']['humidity'];
                     var long = newData[i]['pos']['lon'];
                     var lat = newData[i]['pos']['lat'];
 
