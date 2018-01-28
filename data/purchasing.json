@@ -1,0 +1,22 @@
+{
+    "purchase-1":
+    {
+        "purchase-1-h1": "text here", 
+        "purchase-1-p": "text here"
+    },
+    "purchase-2":
+    {
+        "purchase-2-h1": "text here", 
+        "purchase-2-p": "text here"
+    },
+    "purchase-3":
+    {
+        "purchase-3-h1": "text here", 
+        "purchase-3-p": "text here"
+    },
+    "purchase-4":
+    {
+        "purchase-4-h1": "text here", 
+        "purchase-4-p": "text here"
+    },
+}
