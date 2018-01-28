@@ -158,8 +158,7 @@ socket.on('open', function() {
                     timeStampShort = timeStampShort.replace(/Nov /g, '11/');
                     timeStampShort = timeStampShort.replace(/Dec /g, '12/');
                     timeStampShort = timeStampShort.split(':');
-                    timeStampShort = String(timeStampShort[0] + timeStampShort[1]);
-
+                    timeStampShort = String(timeStampShort[0] + ':' + timeStampShort[1]);
 
                     var mq2 = newData[i]['data']['mq2'];
                     var mq3 = newData[i]['data']['mq3'];
@@ -230,13 +229,13 @@ socket.on('open', function() {
                             {
                                 label: "PM10",
                                 lineTension: 0.3,
-                                backgroundColor: "rgba(2,117,216,0.2)",
-                                borderColor: "rgba(2,117,216,1)",
+                                backgroundColor: "rgba(40,167,69,0.2)",
+                                borderColor: "rgba(40,167,69,1)",
                                 pointRadius: 5,
-                                pointBackgroundColor: "rgba(2,117,216,1)",
+                                pointBackgroundColor: "rgba(40,167,69,1)",
                                 pointBorderColor: "rgba(255,255,255,0.8)",
                                 pointHoverRadius: 5,
-                                pointHoverBackgroundColor: "rgba(2,117,216,1)",
+                                pointHoverBackgroundColor: "rgba(40,167,69,1)",
                                 pointHitRadius: 20,
                                 pointBorderWidth: 2,
                                 data: pm10Array,
@@ -244,13 +243,13 @@ socket.on('open', function() {
                             {
                                 label: "Ozone",
                                 lineTension: 0.3,
-                                backgroundColor: "rgba(2,117,216,0.2)",
-                                borderColor: "rgba(2,117,216,1)",
+                                backgroundColor: "rgba(40,167,69,0.2)",
+                                borderColor: "rgba(40,167,69,1)",
                                 pointRadius: 5,
-                                pointBackgroundColor: "rgba(2,117,216,1)",
+                                pointBackgroundColor: "rgba(40,167,69,1)",
                                 pointBorderColor: "rgba(255,255,255,0.8)",
                                 pointHoverRadius: 5,
-                                pointHoverBackgroundColor: "rgba(2,117,216,1)",
+                                pointHoverBackgroundColor: "rgba(40,167,69,1)",
                                 pointHitRadius: 20,
                                 pointBorderWidth: 2,
                                 data: gasArray,
@@ -288,6 +287,18 @@ socket.on('open', function() {
                 var indexBarChartExists = !!document.getElementById('myBarChart');
                 if (indexBarChartExists) {
 
+                    var green = '#28a745';
+                    var red = '#dc3545';
+                    var yellow = '#ffc107';
+                    var backgroundColorVar = '#28a745';
+                    if (avgAqi > 50) {
+                        backgroundColorVar = '#ffc107';
+                    }
+                    if (avgAqi > 100) {
+                        backgroundColorVar = '#dc3545';
+                    }
+
+
                     var ctx = document.getElementById("myBarChart");
                     var myLineChart = new Chart(ctx, {
                         type: 'bar',
@@ -295,8 +306,8 @@ socket.on('open', function() {
                             labels: labelArray,
                             datasets: [{
                                 label: "Overall AQI",
-                                backgroundColor: "#28a745",
-                                borderColor: "#28a745",
+                                backgroundColor: backgroundColorVar,
+                                borderColor: backgroundColorVar,
                                 data: aqiArray,
                             }],
                         },
