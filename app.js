@@ -147,8 +147,8 @@ socket.on('open', function() {
                     timeStampShort = timeStampShort.replace(/Wed/g, '');
                     timeStampShort = timeStampShort.replace(/Thu/g, '');
                     timeStampShort = timeStampShort.replace(/Fri/g, '');
-                    timeStampShort = timeStampShort.replace(/Jan 28 2018 /g, '');
-                    timeStampShort = timeStampShort.replace(/Jan 29 2018 /g, '');
+                    timeStampShort = timeStampShort.replace(/2018 /g, '');
+                    //timeStampShort = timeStampShort.replace(/Jan 29 2018 /g, '');
 
                     var mq2 = newData[i]['data']['mq2'];
                     var mq3 = newData[i]['data']['mq3'];
