@@ -2345,6 +2345,10 @@ socket.on('open', function() {
 
         } else {
             //update message
+
+            newData = JSON.parse(newData);
+            console.log(newData);
+
         }
 
     });

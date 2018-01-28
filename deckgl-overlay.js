@@ -6,7 +6,7 @@ const LIGHT_SETTINGS = {
     ambientRatio: 0.4,
     diffuseRatio: 0.6,
     specularRatio: 0.2,
-    lightsStrength: [0.8, 0.0, 0.8, 0.0],
+    lightsStrength: [0.8, 0.0, 0.9, 0.0],
     numberOfLights: 2
 };
 
@@ -19,10 +19,10 @@ const colorRange = [
     [209, 55, 78]
 ];
 
-const elevationScale = { min: 1, max: 20 };
+const elevationScale = { min: 1, max: 15 };
 
 const defaultProps = {
-    radius: 100,
+    radius: 50,
     upperPercentile: 100,
     coverage: 1
 };
