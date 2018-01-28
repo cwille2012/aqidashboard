@@ -2253,7 +2253,7 @@ socket.on('open', function() {
                         data: null
                     };
 
-                    /*var response = new Array();
+                    var response = new Array();
                     for (var i in newData) {
 
                         var lng = newData[i]['pos']['lon'];
@@ -2269,14 +2269,14 @@ socket.on('open', function() {
                     }
 
                     console.log(response);
-                    */
-                    requestCsv(DATA_URL, (error, response) => {
+
+                    /*requestCsv(DATA_URL, (error, response) => {
                         if (!error) {
                             const data = response.map(d => [Number(d.lng), Number(d.lat)]);
                             console.log(data);
                             this.setState({ data });
                         }
-                    });
+                    });*/
 
                 }
 
