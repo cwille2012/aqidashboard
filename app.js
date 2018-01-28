@@ -51,7 +51,7 @@ socket.on('open', function() {
                     var lat = newData[i]['pos']['lat'];
 
                     var particulates = Math.round(((pm25 + pm10) / 2) * 100) / 100;
-                    var gasses = Math.round(((mq2 + mq3 + mq4 + mq5 + mq6 + mq7) / 6) * 100) / 100;
+                    var gasses = Math.round(((mq2 + mq3 + mq4 + mq5 + mq6) / 5) * 100) / 100;
 
                     var tr = document.createElement("tr");
 
@@ -62,14 +62,14 @@ socket.on('open', function() {
                     tr.appendChild(td0);
 
                     var td1 = document.createElement("td");
-                    var text1 = document.createTextNode(String(lat));
-                    td1.setAttribute("id", i + '-lat');
+                    var text1 = document.createTextNode(String(pm25));
+                    td1.setAttribute("id", i + '-pm25');
                     td1.appendChild(text1);
                     tr.appendChild(td1);
 
                     var td6 = document.createElement("td");
-                    var text6 = document.createTextNode(String(long));
-                    td6.setAttribute("id", i + '-long');
+                    var text6 = document.createTextNode(String(pm10));
+                    td6.setAttribute("id", i + '-pm10');
                     td6.appendChild(text6);
                     tr.appendChild(td6);
 
