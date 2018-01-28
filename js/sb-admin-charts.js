@@ -149,14 +149,14 @@ Chart.defaults.global.defaultFontColor = '#292b2c';
 //     }
 // });
 // -- Pie Chart Example
-var ctx = document.getElementById("myPieChart");
-var myPieChart = new Chart(ctx, {
-    type: 'pie',
-    data: {
-        labels: ["Entertainment", "Liesure", "Living Expenses", "Other"],
-        datasets: [{
-            data: [12.21, 15.58, 11.25, 8.32],
-            backgroundColor: ['#007bff', '#ffc107', '#28a745', '#dc3545'],
-        }],
-    },
-});
+// var ctx = document.getElementById("myPieChart");
+// var myPieChart = new Chart(ctx, {
+//     type: 'pie',
+//     data: {
+//         labels: ["Entertainment", "Liesure", "Living Expenses", "Other"],
+//         datasets: [{
+//             data: [12.21, 15.58, 11.25, 8.32],
+//             backgroundColor: ['#007bff', '#ffc107', '#28a745', '#dc3545'],
+//         }],
+//     },
+// });
