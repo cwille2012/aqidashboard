@@ -43,14 +43,12 @@ socket.on('open', function() {
                     var mq3 = newData[i]['data']['mq3'];
                     var mq4 = newData[i]['data']['mq4'];
                     var mq5 = newData[i]['data']['mq5'];
-                    var mq6 = newData[i]['data']['mq6'];
-                    var mq7 = newData[i]['data']['mq7'];
                     var temp = newData[i]['data']['temperature'];
                     var hum = newData[i]['data']['humidity'];
-                    var long = newData[i]['pos']['lon'];
-                    var lat = newData[i]['pos']['lat'];
+                    //var long = newData[i]['pos']['lon'];
+                    //var lat = newData[i]['pos']['lat'];
 
-                    var particulates = Math.round(((pm25 + pm10) / 2) * 100) / 100;
+                    //var particulates = Math.round(((pm25 + pm10) / 2) * 100) / 100;
                     var gasses = Math.round(((mq2 + mq3 + mq4 + mq5) / 4) * 100) / 100;
 
                     var tr = document.createElement("tr");
@@ -74,7 +72,7 @@ socket.on('open', function() {
                     tr.appendChild(td6);
 
                     var td2 = document.createElement("td");
-                    var text2 = document.createTextNode(String(particulates));
+                    var text2 = document.createTextNode(String(gasses));
                     td2.setAttribute("id", i + '-particulates');
                     td2.appendChild(text2);
                     tr.appendChild(td2);
@@ -86,13 +84,13 @@ socket.on('open', function() {
                     // tr.appendChild(td3);
 
                     var td4 = document.createElement("td");
-                    var text4 = document.createTextNode(String(temp));
+                    var text4 = document.createTextNode(String(temp) + 'C');
                     td4.setAttribute("id", i + '-temp');
                     td4.appendChild(text4);
                     tr.appendChild(td4);
 
                     var td5 = document.createElement("td");
-                    var text5 = document.createTextNode(String(hum));
+                    var text5 = document.createTextNode(String(hum) + '%');
                     td5.setAttribute("id", i + '-hum');
                     td5.appendChild(text5);
                     tr.appendChild(td5);
