@@ -203,9 +203,7 @@ socket.on('open', function() {
                     if (aqiArray.length > 7) {
                         aqiArray.shift();
                     }
-
                 }
-
 
                 var ctx = document.getElementById("myAreaChart");
                 var myLineChart = new Chart(ctx, {
@@ -215,13 +213,13 @@ socket.on('open', function() {
                         datasets: [{
                                 label: "PM25",
                                 lineTension: 0.3,
-                                backgroundColor: "rgba(2,117,216,0.2)",
+                                backgroundColor: "rgba(255,193,7,0.2)",
                                 borderColor: "rgba(2,117,216,1)",
                                 pointRadius: 5,
-                                pointBackgroundColor: "rgba(2,117,216,1)",
+                                pointBackgroundColor: "rgba(255,193,7,1)",
                                 pointBorderColor: "rgba(255,255,255,0.8)",
                                 pointHoverRadius: 5,
-                                pointHoverBackgroundColor: "rgba(2,117,216,1)",
+                                pointHoverBackgroundColor: "rgba(255,193,7,1)",
                                 pointHitRadius: 20,
                                 pointBorderWidth: 2,
                                 data: pm25Array,
