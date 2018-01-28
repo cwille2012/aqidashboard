@@ -2237,7 +2237,7 @@ socket.on('open', function() {
 
             //VISUALIZATION AND MAPPING HERE
 
-            //const DATA_URL = 'https://raw.githubusercontent.com/uber-common/deck.gl-data/master/examples/3d-heatmap/heatmap-data.csv';
+            const DATA_URL = 'https://raw.githubusercontent.com/uber-common/deck.gl-data/master/examples/3d-heatmap/heatmap-data.csv';
 
 
 
