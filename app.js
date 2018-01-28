@@ -126,6 +126,8 @@ socket.on('open', function() {
                     timeStamp = timeStamp.replace(/Wed/g, '');
                     timeStamp = timeStamp.replace(/Thu/g, '');
                     timeStamp = timeStamp.replace(/Fri/g, '');
+                    timeStamp = timeStamp.replace(/Jan 28 2018 /g, '');
+                    timeStamp = timeStamp.replace(/Jan 29 2018 /g, '');
 
                     labelArray.push(timeStamp);
                     pm25Array.push(newData[i]['data']['pm25']);
