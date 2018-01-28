@@ -343,6 +343,8 @@ socket.on('open', function() {
             //grapg pm25 independant
             if (!!document.getElementById('pm25-graph')) {
 
+                var datasets = new Object();
+
                 var pm25Data = new Array();
                 var pm10Data = new Array();
                 var mq2Data = new Array();
