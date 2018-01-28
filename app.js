@@ -21,6 +21,9 @@ socket.on('open', function() {
             //add data to table:
             var indexDataTableExists = !!document.getElementById('indexDataTable');
             if (indexDataTableExists) {
+                var sumGasses = 0;
+                var sumPm25 = 0;
+                var sumPm10 = 0;
                 for (var i in newData) {
                     var timeStamp = parseInt(newData[i]['_id'].toString().substr(0, 8), 16) * 1000;
                     timeStamp = new Date(timeStamp);
@@ -50,6 +53,10 @@ socket.on('open', function() {
 
                     //var particulates = Math.round(((pm25 + pm10) / 2) * 100) / 100;
                     var gasses = Math.round(((mq2 + mq3 + mq4 + mq5) / 4) * 100) / 100;
+
+                    sumGasses += gasses;
+                    sumPm10 += pm10;
+                    sumPm25 += pm25;
 
                     var tr = document.createElement("tr");
 
@@ -97,6 +104,12 @@ socket.on('open', function() {
 
                     document.getElementById('indexDataTableBody').appendChild(tr);
                 }
+                var avgGasses = sumGasses / i;
+                var avgPm10 = sumPm10 / i;
+                var avgPm25 = sumPm25 / i;
+                console.log('Average Gasses: ' + avgGasses);
+                console.log('Average PM10: ' + avgPm10);
+                console.log('Average PM25: ' + avgPm25);
             }
             //add data to area chart:
             var indexAreaChartExists = !!document.getElementById('myAreaChart');
