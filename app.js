@@ -79,11 +79,11 @@ socket.on('open', function() {
                     td2.appendChild(text2);
                     tr.appendChild(td2);
 
-                    var td3 = document.createElement("td");
-                    var text3 = document.createTextNode(String(gasses));
-                    td3.setAttribute("id", i + '-gasses');
-                    td3.appendChild(text3);
-                    tr.appendChild(td3);
+                    // var td3 = document.createElement("td");
+                    // var text3 = document.createTextNode(String(gasses));
+                    // td3.setAttribute("id", i + '-gasses');
+                    // td3.appendChild(text3);
+                    // tr.appendChild(td3);
 
                     var td4 = document.createElement("td");
                     var text4 = document.createTextNode(String(temp));
@@ -93,7 +93,7 @@ socket.on('open', function() {
 
                     var td5 = document.createElement("td");
                     var text5 = document.createTextNode(String(hum));
-                    td5.setAttribute("id", i + '-temp');
+                    td5.setAttribute("id", i + '-hum');
                     td5.appendChild(text5);
                     tr.appendChild(td5);
 
