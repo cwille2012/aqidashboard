@@ -24,6 +24,7 @@ socket.on('open', function() {
                 var sumGasses = 0;
                 var sumPm25 = 0;
                 var sumPm10 = 0;
+                var sumAqi = 0;
                 for (var i in newData) {
                     var timeStamp = parseInt(newData[i]['_id'].toString().substr(0, 8), 16) * 1000;
                     timeStamp = new Date(timeStamp);
@@ -54,9 +55,18 @@ socket.on('open', function() {
                     //var particulates = Math.round(((pm25 + pm10) / 2) * 100) / 100;
                     var gasses = Math.round(((mq2 + mq3 + mq4 + mq5) / 4) * 100) / 100;
 
+                    var aqi = pm10;
+                    if (pm25 > aqi) {
+                        aqi = pm25;
+                    }
+                    if (gasses > aqi) {
+                        aqi = gasses;
+                    }
+
                     sumGasses += gasses;
                     sumPm10 += pm10;
                     sumPm25 += pm25;
+                    sumAqi += aqi;
 
                     var tr = document.createElement("tr");
 
@@ -85,25 +95,21 @@ socket.on('open', function() {
                     tr.appendChild(td2);
 
                     var td4 = document.createElement("td");
-                    var text4 = document.createTextNode(String(temp) + 'C');
-                    td4.setAttribute("id", i + '-temp');
+                    var text4 = document.createTextNode(String(aqi) + 'C');
+                    td4.setAttribute("id", i + '-aqi');
                     td4.appendChild(text4);
                     tr.appendChild(td4);
-
-                    var td5 = document.createElement("td");
-                    var text5 = document.createTextNode(String(hum) + '%');
-                    td5.setAttribute("id", i + '-hum');
-                    td5.appendChild(text5);
-                    tr.appendChild(td5);
 
                     document.getElementById('indexDataTableBody').appendChild(tr);
                 }
                 var avgGasses = sumGasses / i;
                 var avgPm10 = sumPm10 / i;
                 var avgPm25 = sumPm25 / i;
+                var avgAqi = sumAqi / i;
                 console.log('Average Gasses: ' + avgGasses);
                 console.log('Average PM10: ' + avgPm10);
                 console.log('Average PM25: ' + avgPm25);
+                console.log('Average AQI: ' + avgAqi);
             }
             //add data to area chart:
             var indexAreaChartExists = !!document.getElementById('myAreaChart');
