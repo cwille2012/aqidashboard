@@ -11,15 +11,16 @@ var socket = require('engine.io-client')('ws://ec2-18-220-229-176.us-east-2.comp
 
 socket.on('open', function() {
     socket.on('message', function(data) {
-        console.log(data);
+        //console.log(data);
         var newData = String(data);
         if (newData.length > 500) {
             //first message
             newData = JSON.parse(newData);
+            console.log(newData);
             var indexDataTableExists = !!document.getElementById('indexDataTable');
             if (indexDataTableExists) {
                 for (var i in newData) {
-                    var timeStamp = parseInt(newData._id.toString().substr(0, 8), 16) * 1000;
+                    var timeStamp = parseInt(newData['_id'].toString().substr(0, 8), 16) * 1000;
                     timeStamp = new Date(timestamp);
 
                     var pm25 = newData.data.pm25.parseInt();
