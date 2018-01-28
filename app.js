@@ -26,7 +26,8 @@ socket.on('open', function() {
                     timeStamp = new Date(timeStamp);
                     timeStamp = String(timeStamp);
                     timeStamp = timeStamp.replace(/GMT-0500/g, '');
-                    timeStamp = timeStamp.replace(/(EST)/g, '');
+                    timeStamp = timeStamp.replace(/EST/g, '');
+                    timeStamp = timeStamp.replace(/"/g, "").replace(/'/g, "").replace(/\(|\)/g, "");
                     timeStamp = timeStamp.replace(/Sat/g, '');
                     timeStamp = timeStamp.replace(/Sun/g, '');
                     timeStamp = timeStamp.replace(/Mon/g, '');
