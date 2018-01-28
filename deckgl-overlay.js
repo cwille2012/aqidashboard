@@ -19,7 +19,7 @@ const colorRange = [
     [209, 55, 78]
 ];
 
-const elevationScale = { min: 1, max: 50 };
+const elevationScale = { min: 1, max: 10 };
 
 const defaultProps = {
     radius: 1000,
@@ -40,7 +40,7 @@ export default class DeckGLOverlay extends Component {
             minZoom: 5,
             maxZoom: 15,
             pitch: 40.5,
-            bearing: -27.396674584323023
+            bearing: 0
         };
     }
 
@@ -107,7 +107,7 @@ export default class DeckGLOverlay extends Component {
                 colorRange,
                 coverage,
                 data,
-                elevationRange: [0, 3000],
+                elevationRange: [0, 500],
                 elevationScale: this.state.elevationScale,
                 extruded: true,
                 getPosition: d => d,
