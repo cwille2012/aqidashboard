@@ -40,8 +40,8 @@ socket.on('open', function() {
                     timeStamp = timeStamp.replace(/Fri/g, '');
 
 
-                    var pm25 = Math.round(parseFloat(newData[i]['data']['pm25']) * 12.05 * 100) / 100;
-                    var pm10 = Math.round(parseFloat(newData[i]['data']['pm10']) * 3.11 * 100) / 100;
+                    var pm25 = Math.round(parseFloat(newData[i]['data']['pm25']) * 11.80 * 100) / 100;
+                    var pm10 = Math.round(parseFloat(newData[i]['data']['pm10']) * 2.91 * 100) / 100;
                     var mq2 = newData[i]['data']['mq2'];
                     var mq3 = newData[i]['data']['mq3'];
                     var mq4 = newData[i]['data']['mq4'];
