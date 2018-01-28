@@ -110,6 +110,17 @@ socket.on('open', function() {
                 console.log('Average PM10: ' + avgPm10);
                 console.log('Average PM25: ' + avgPm25);
                 console.log('Average AQI: ' + avgAqi);
+
+                if (!!document.getElementById('averagePm25')) {
+                    document.getElementById('averagePm25').innerHTML = avgPm25;
+                }
+                if (!!document.getElementById('averagePm10')) {
+                    document.getElementById('averagePm10').innerHTML = avgPm10;
+                }
+                if (!!document.getElementById('averageOzone')) {
+                    document.getElementById('averageOzone').innerHTML = avgGasses;
+                }
+
             }
             //add data to area chart:
             var indexAreaChartExists = !!document.getElementById('myAreaChart');
