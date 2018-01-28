@@ -131,6 +131,8 @@ socket.on('open', function() {
                 var gasArray = new Array();
                 var aqiArray = new Array();
 
+                var timeInterval = parseInt((newData.length - 1) / 7);
+
                 for (var i in newData) {
                     var timeStampShort = parseInt(newData[i]['_id'].toString().substr(0, 8), 16) * 1000;
                     timeStampShort = new Date(timeStampShort);
@@ -153,26 +155,29 @@ socket.on('open', function() {
                     var mq4 = newData[i]['data']['mq4'];
                     var mq5 = newData[i]['data']['mq5'];
 
-                    labelArray.push(timeStampShort);
-                    pm25Array.push(Math.round(parseFloat(newData[i]['data']['pm25']) * 11.50 * 100) / 100);
+                    if ((i == timeInterval) || (i == timeInterval * 7) || (i == timeInterval * 2) || (i == timeInterval * 3) || (i == timeInterval * 4) || (i == timeInterval * 5) || (i == timeInterval * 6)) {
+                        console.log(timeInterval);
+                        labelArray.push(timeStampShort);
+                        pm25Array.push(Math.round(parseFloat(newData[i]['data']['pm25']) * 11.50 * 100) / 100);
 
-                    var pm10Val = Math.round(parseFloat(newData[i]['data']['pm10']) * 2.41 * 100) / 100;
-                    if (pm10Val > 21) {
-                        pm10Val = Math.round((pm10Val - 10.00) * 100) / 100;
+                        var pm10Val = Math.round(parseFloat(newData[i]['data']['pm10']) * 2.41 * 100) / 100;
+                        if (pm10Val > 21) {
+                            pm10Val = Math.round((pm10Val - 10.00) * 100) / 100;
+                        }
+
+                        var aqi = pm10Val;
+                        if ((Math.round(parseFloat(newData[i]['data']['pm25']) * 11.50 * 100) / 100) > aqi) {
+                            aqi = (Math.round(parseFloat(newData[i]['data']['pm25']) * 11.50 * 100) / 100);
+                        }
+                        if ((Math.round(((mq2 + mq3 + mq4 + mq5) / 4) * 100) / 100) > aqi) {
+                            aqi = (Math.round(((mq2 + mq3 + mq4 + mq5) / 4) * 100) / 100);
+                        }
+
+                        aqiArray.push(aqi);
+
+                        pm10Array.push(pm10Val);
+                        gasArray.push(Math.round(((mq2 + mq3 + mq4 + mq5) / 4) * 100) / 100);
                     }
-
-                    var aqi = pm10Val;
-                    if ((Math.round(parseFloat(newData[i]['data']['pm25']) * 11.50 * 100) / 100) > aqi) {
-                        aqi = (Math.round(parseFloat(newData[i]['data']['pm25']) * 11.50 * 100) / 100);
-                    }
-                    if ((Math.round(((mq2 + mq3 + mq4 + mq5) / 4) * 100) / 100) > aqi) {
-                        aqi = (Math.round(((mq2 + mq3 + mq4 + mq5) / 4) * 100) / 100);
-                    }
-
-                    aqiArray.push(aqi);
-
-                    pm10Array.push(pm10Val);
-                    gasArray.push(Math.round(((mq2 + mq3 + mq4 + mq5) / 4) * 100) / 100);
 
                     if (labelArray.length > 7) {
                         labelArray.shift();
